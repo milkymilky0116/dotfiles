@@ -42,7 +42,6 @@
             nodejs_22
             pnpm
             bun
-            gh
           ];
         fonts.packages = with pkgs; [
           (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -53,11 +52,13 @@
           enable = true;
           brews = [
             "mas"
+            "deno"
           ];
           casks = [
             "arc"
             "slack"
             "figma"
+            "orbstack"
           ];
           onActivation.cleanup = "zap";
           masApps = {
@@ -90,6 +91,7 @@
             "/Applications/Arc.app"
             "${pkgs.obsidian}/Applications/Obsidian.app"
           ];
+          dock.show-recents = false;
 
           finder.FXPreferredViewStyle = "clmv";
           loginwindow.GuestEnabled = false;
