@@ -43,6 +43,11 @@
     '';
   };
   programs.oh-my-posh.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "milkymilky0116";
+    userEmail = "sjlee990129@gmail.com";
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
