@@ -42,6 +42,7 @@
             nodejs_22
             pnpm
             bun
+            gh
           ];
         fonts.packages = with pkgs; [
           (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
