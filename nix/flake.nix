@@ -36,9 +36,16 @@
             ripgrep
             go
             rust-analyzer-nightly
+            tmux
+            fzf
+            bat
+            nodejs_22
+            pnpm
+            bun
           ];
-        fonts.packages = [
-          (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+        fonts.packages = with pkgs; [
+          (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+          pretendard
         ];
 
         homebrew = {
@@ -52,7 +59,9 @@
             "figma"
           ];
           onActivation.cleanup = "zap";
-          masApps = { };
+          masApps = {
+            "bear" = 1091189122;
+          };
         };
         system.activationScripts.applications.text =
           let

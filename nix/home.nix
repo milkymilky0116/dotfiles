@@ -16,12 +16,13 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "JetBrainsMono Nerd Font";
-      size = 18;
+      name = "JetBrainsMono Nerd Font Mono";
+      size = 24;
     };
     themeFile = "Dracula";
     extraConfig = ''
       background_opacity 0.9
+      window_padding_width 4
     '';
   };
   programs.zsh = {
@@ -30,6 +31,9 @@
     autosuggestion.enable = true;
     oh-my-zsh = {
       enable = true;
+    };
+    shellAliases = {
+      fpn = "nvim $(fzf --preview='bat --color=always {}')";
     };
     initExtra = ''
       eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
