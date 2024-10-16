@@ -48,6 +48,14 @@
     userName = "milkymilky0116";
     userEmail = "sjlee990129@gmail.com";
   };
+  programs.btop =
+    {
+      enable = true;
+      settings = {
+        color_theme = "TTY";
+        vim_keys = true;
+      };
+    };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

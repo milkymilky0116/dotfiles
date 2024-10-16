@@ -42,6 +42,10 @@
             nodejs_22
             pnpm
             bun
+            neofetch
+            btop
+            lazydocker
+            lazygit
           ];
         fonts.packages = with pkgs; [
           (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -59,10 +63,13 @@
             "slack"
             "figma"
             "orbstack"
+            "discord"
+            "notion"
           ];
           onActivation.cleanup = "zap";
           masApps = {
             "bear" = 1091189122;
+            "kakaotalk" = 869223134;
           };
         };
         system.activationScripts.applications.text =
