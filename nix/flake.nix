@@ -47,6 +47,8 @@
             lazydocker
             lazygit
             python313
+            docker
+            httpie
           ];
         fonts.packages = with pkgs; [
           (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -145,7 +147,9 @@
             };
           }
           {
-            users.users.leesungjin.home = "/Users/leesungjin";
+            users.users.leesungjin = {
+              home = "/Users/leesungjin";
+            };
           }
           home-manager.darwinModules.home-manager
           {
