@@ -18,7 +18,7 @@ return {
     {
       "<leader>gtt",
       function()
-        vim.cmd("GoTest")
+        vim.cmd("GoTest -v")
       end,
     },
     {
