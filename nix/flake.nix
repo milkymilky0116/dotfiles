@@ -50,6 +50,8 @@
             docker
             httpie
             minikube
+            sqlc
+            goose
           ];
         fonts.packages = with pkgs; [
           (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
