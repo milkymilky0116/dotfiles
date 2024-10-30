@@ -30,7 +30,7 @@
             ])
             neovim
             obsidian
-            kitty
+            alacritty
             mkalias
             rectangle
             ripgrep
@@ -60,9 +60,11 @@
 
         homebrew = {
           enable = true;
+          taps = [ "cerbos/tap" ];
           brews = [
             "mas"
             "deno"
+            "cerbos"
           ];
           casks = [
             "arc"
@@ -100,7 +102,7 @@
         system.defaults = {
           dock.autohide = true;
           dock.persistent-apps = [
-            "${pkgs.kitty}/Applications/kitty.app"
+            "${pkgs.alacritty}/Applications/Alacritty.app"
             "/Applications/Arc.app"
             "${pkgs.obsidian}/Applications/Obsidian.app"
           ];

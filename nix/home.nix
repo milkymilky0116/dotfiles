@@ -13,6 +13,7 @@
   home.file = { };
 
   home.sessionVariables = { };
+
   programs.kitty = {
     enable = true;
     font = {
