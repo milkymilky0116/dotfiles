@@ -32,7 +32,6 @@
             obsidian
             alacritty
             mkalias
-            rectangle
             ripgrep
             go
             rust-analyzer-nightly
@@ -60,7 +59,7 @@
 
         homebrew = {
           enable = true;
-          taps = [ "cerbos/tap" ];
+          taps = [ "cerbos/tap" "nikitabobko/tap" ];
           brews = [
             "mas"
             "deno"
@@ -73,6 +72,7 @@
             "orbstack"
             "discord"
             "notion"
+            "aerospace"
           ];
           onActivation.cleanup = "zap";
           masApps = {
@@ -113,6 +113,12 @@
           NSGlobalDomain.AppleICUForce24HourTime = true;
           NSGlobalDomain.AppleInterfaceStyle = "Dark";
           NSGlobalDomain.KeyRepeat = 2;
+          CustomUserPreferences = {
+            "com.apple.screencapture" = {
+              location = "~/Documents/Capture";
+              type = "png";
+            };
+          };
         };
 
         launchd.agents.rectangle.serviceConfig.KeepAlive = true;

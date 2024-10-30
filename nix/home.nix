@@ -14,18 +14,6 @@
 
   home.sessionVariables = { };
 
-  programs.kitty = {
-    enable = true;
-    font = {
-      name = "JetBrainsMono Nerd Font Mono";
-      size = 24;
-    };
-    themeFile = "Dracula";
-    extraConfig = ''
-      background_opacity 0.9
-      window_padding_width 4
-    '';
-  };
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
@@ -37,10 +25,12 @@
       fpn = "nvim $(fzf --preview='bat --color=always {}')";
     };
     initExtra = ''
-      eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
-      if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-        eval "$(oh-my-posh init zsh)"
-      fi
+            eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
+            if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+              eval "$(oh-my-posh init zsh)"
+            fi
+
+      export PATH=$PATH:$HOME/go/bin
     '';
   };
   programs.oh-my-posh.enable = true;
