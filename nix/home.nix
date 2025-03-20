@@ -23,14 +23,15 @@
     };
     shellAliases = {
       fpn = "nvim $(fzf --preview='bat --color=always {}')";
+      ls = "eza -TL 1 --icons";
     };
     initExtra = ''
             eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
             if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
               eval "$(oh-my-posh init zsh)"
             fi
-
-      export PATH=$PATH:$HOME/go/bin
+      eval "$(direnv hook zsh)"
+      export PATH=$PATH:$HOME/go/bin:$HOME/zig
     '';
   };
   programs.oh-my-posh.enable = true;

@@ -1,0 +1,3 @@
+open:
+  # default가 'nvim {file}'이면 어떤 파일을 열더라도 nvim으로 열립니다.
+  default: "nvim {file}"

@@ -1,6 +1,14 @@
-version = 2
-final_space = true
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
+
+[palette]
+  green = '#00ff00'
+
+[transient_prompt]
+  template = '❯ '
+  foreground = 'lightYellow'
+  background = 'transparent'
 
 [[blocks]]
   type = 'prompt'
@@ -8,58 +16,56 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   newline = true
 
   [[blocks.segments]]
-     type = 'path'
-     style = 'plain'
-     background = 'transparent'
-     foreground = 'lightCyan'
-     template = '{{ .Path }}'
+    template = '{{ .Path }}'
+    foreground = 'lightCyan'
+    background = 'transparent'
+    type = 'path'
+    style = 'plain'
 
-     [blocks.segments.properties]
-     	style = 'full'
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      style = 'full'
 
   [[blocks.segments]]
-    type = 'git'
-    style = 'plain'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
     foreground = 'p:grey'
     background = 'transparent'
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    type = 'git'
+    style = 'plain'
 
     [blocks.segments.properties]
       branch_icon = ''
+      cache_duration = 'none'
       commit_icon = '@'
       fetch_status = true
+
 [[blocks]]
   type = 'rprompt'
   overflow = 'hidden'
 
   [[blocks.segments]]
-    type = 'executiontime'
-    style = 'plain'
+    template = '{{ .FormattedMs }}'
     foreground = 'lightYellow'
     background = 'transparent'
-    template = '{{ .FormattedMs }}'
+    type = 'executiontime'
+    style = 'plain'
 
     [blocks.segments.properties]
+      cache_duration = 'none'
       threshold = 5000
 
-  [[blocks]]
+[[blocks]]
   type = 'prompt'
   alignment = 'left'
   newline = true
+
   [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    foreground_templates = [
-     "{{if gt .Code 0}}red{{end}}",
-     "{{if eq .Code 0}}lightYellow{{end}}",
-    ]
+    template = '❯'
     foreground = 'lightYellow'
     background = 'transparent'
-    template = '❯'
+    type = 'text'
+    style = 'plain'
+    foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}lightYellow{{end}}']
 
-[transient_prompt]
-  foreground = 'lightYellow'
-  background = 'transparent'
-  template = '❯ '
-[palette]
-green = "#00ff00"
+    [blocks.segments.properties]
+      cache_duration = 'none'

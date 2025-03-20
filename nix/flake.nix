@@ -3,22 +3,26 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "github:LnL7/nix-darwin/d06cf700ee589527fde4bd9b91f899e7137c05a6";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     fenix.url = "github:nix-community/fenix/monthly";
+    templFlake.url = "github:a-h/templ";
   };
 
-  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, nix-homebrew, fenix }:
+  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, nix-homebrew, fenix, templFlake }:
     let
       configuration = { pkgs, config, ... }: {
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
 
         nixpkgs.config.allowUnfree = true;
-        nixpkgs.overlays = [ fenix.overlays.default ];
+        nixpkgs.overlays = [
+          fenix.overlays.default
+          templFlake.overlays.default
+        ];
         environment.systemPackages =
           with pkgs; [
             (fenix.packages.${system}.complete.withComponents [
@@ -38,22 +42,59 @@
             tmux
             fzf
             bat
-            nodejs_22
             pnpm
             bun
             neofetch
             btop
             lazydocker
             lazygit
-            python313
+            python312
             docker
             httpie
             minikube
             sqlc
             goose
+            eza
+            poetry
+            templ
+            air
+            dotnet-sdk_8
+            direnv
+            argocd
+            jetbrains.idea-community
+            gradle
+            protoc-gen-go
+            protoc-gen-go-grpc
+            protobuf
+            grpcurl
+            postman
+            wire
+            zip
+            usql
+            zoom-us
+            flyctl
+            railway
+            oapi-codegen
+            lua
+            exercism
+            google-chrome
+            poetry
+            ffmpeg
+            act
+            tmux-sessionizer
+            redis
+            yazi
+            chafa
+            bacon
+            sqlx-cli
+            badger
+            less
+            gnupg
+            b2sum
           ];
         fonts.packages = with pkgs; [
-          (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+          nerd-fonts.jetbrains-mono
+          nerd-fonts.iosevka
           pretendard
         ];
 
@@ -64,6 +105,9 @@
             "mas"
             "deno"
             "cerbos"
+            "libomp"
+            "llvm"
+            "node"
           ];
           casks = [
             "arc"
@@ -73,11 +117,28 @@
             "discord"
             "notion"
             "aerospace"
+            "unity-hub"
+            "microsoft-word"
+            "postico"
+            "termius"
+            "microsoft-teams"
+            "zed"
+            "ghostty"
+            "love"
+            "firefox"
+            "tiled"
+            "musescore"
+            "zen-browser"
+            "windsurf"
+            "balenaetcher"
           ];
           onActivation.cleanup = "zap";
+          onActivation.autoUpdate = true;
+          onActivation.upgrade = true;
           masApps = {
             "bear" = 1091189122;
             "kakaotalk" = 869223134;
+            "logic pro" = 634148309;
           };
         };
         system.activationScripts.applications.text =
@@ -93,7 +154,7 @@
             	rm -rf /Applications/Nix\ Apps
             	mkdir -p /Applications/Nix\ Apps
             	find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-            	while read src; do
+            	while read -r src; do
             	 app_name=$(basename "$src")
             	 echo "copying $src" >&2
             	 ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
@@ -102,8 +163,8 @@
         system.defaults = {
           dock.autohide = true;
           dock.persistent-apps = [
-            "${pkgs.alacritty}/Applications/Alacritty.app"
-            "/Applications/Arc.app"
+            "/Applications/Ghostty.app"
+            "/Applications/Zen Browser.app"
             "${pkgs.obsidian}/Applications/Obsidian.app"
           ];
           dock.show-recents = false;
@@ -123,7 +184,7 @@
 
         launchd.agents.rectangle.serviceConfig.KeepAlive = true;
         # Auto upgrade nix package and the daemon service.
-        services.nix-daemon.enable = true;
+        # services.nix-daemon.enable = true;
         # nix.package = pkgs.nix;
 
         # Necessary for using flakes on this system.
