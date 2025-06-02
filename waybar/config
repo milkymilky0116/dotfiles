@@ -1,0 +1,54 @@
+{
+  "layer": "top",
+  "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": ["temperature", "pulseaudio", "bluetooth", "cpu", "memory", "clock", "custom/wlogout"],
+  "cpu": {
+    "interval": 10,
+    "format": "cpu: {}%"
+  },
+  "temperature": {
+    "format": "{temperatureC}°C ",
+    "interval": 10,
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "exec": "~/.config/waybar/scripts/pipewire.sh",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-icons": {
+      "default": ["","",""]
+    },
+    "on-click": "pavucontrol"
+  },
+  "bluetooth": {
+    "format": "{icon}",
+    "format-icons": {
+      "enabled": ""
+    },
+    "on-click": "blueman-manager",
+    "tootip-format": "{status}"
+  },
+  "memory": {
+    "interval": 10,
+    "format": "mem: {percentage}%"
+  },
+  "clock": {
+    "format": "{:%b %d %a %H:%M}",
+    "format-alt": "{:%a %d %b %H:%M}"
+  },
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
+    }
+  },
+  "custom/wlogout": {
+    "on-click": "wlogout",
+    "format": ""
+  }
+}

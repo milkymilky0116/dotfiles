@@ -11,11 +11,8 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-          "nil_ls",
           "gopls",
           "rust_analyzer",
-          "ts_ls",
-          "denols",
           "svelte",
           "tailwindcss",
         },
@@ -61,7 +58,6 @@ return {
           },
         },
       })
-      lspconfig.nil_ls.setup({ capabilities = capabilities })
       lspconfig.gopls.setup({ capabilities = capabilities })
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
@@ -69,53 +65,27 @@ return {
           ["rust-analyzer"] = {
             inlayHints = {
               enable = true,
-              typeHints = true, -- 타입 힌트 활성화
+              typeHints = true,      -- 타입 힌트 활성화
               parameterHints = true, -- 매개변수 힌트 활성화
-              chainingHints = true, -- 메서드 체이닝 힌트 활성화
+              chainingHints = true,  -- 메서드 체이닝 힌트 활성화
             },
           },
         },
       })
-      lspconfig.vtsls.setup({
-        capabilities = capabilities,
-        settings = {
-          complete_function_calls = true,
-          vtsls = {
-            enableMoveToFileCodeAction = true,
-            autoUseWorkspaceTsdk = true,
-            experimental = {
-              maxInlayHintLength = 30,
-              completion = {
-                enableServerSideFuzzyMatch = true,
-              },
-            },
-          },
-          typescript = {
-            updateImportsOnFileMove = { enabled = "always" },
-            suggest = {
-              completeFunctionCalls = true,
-            },
-            inlayHints = {
-              enumMemberValues = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
-              parameterNames = { enabled = "literals" },
-              parameterTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = true },
-              variableTypes = { enabled = false },
-            },
-          },
-        },
-      })
-      lspconfig.denols.setup({ capabilities = capabilities })
       lspconfig.svelte.setup({ capabilities = capabilities })
       lspconfig.tailwindcss.setup({ capabilities = capabilities })
       lspconfig.ruff.setup({ capabilities = capabilities })
-      lspconfig.ruff_lsp.setup({ capabilities = capabilities })
       lspconfig.pyright.setup({ capabilities = capabilities })
       lspconfig.templ.setup({ capabilities = capabilities })
       lspconfig.clangd.setup({ capabilities = capabilities })
-      lspconfig.htmx.setup({ capabilities = capabilities })
-      lspconfig.zls.setup({ capabilities = capabilities })
+      lspconfig.zls.setup({
+        cmd = { "zls" },
+      })
+      lspconfig.ols.setup({ capabilities = capabilities })
+      lspconfig.vtsls.setup({ capabilities = capabilities })
+      lspconfig.gdscript.setup({ capabilities = capabilities })
+      lspconfig.elixirls.setup({ capabilities = capabilities, cmd = { vim.fn.expand("~/.local/share/nvim/mason/bin/elixir-ls") } })
+      lspconfig.prismals.setup({ capabilities = capabilities })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 

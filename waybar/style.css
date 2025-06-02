@@ -1,0 +1,45 @@
+@import "/home/milky/.cache/wal/colors-waybar.css";
+
+* {
+  margin: 2;
+  padding: 2;
+  color: @color5;
+  background: transparent;
+}
+
+#window {
+  padding: 0 10px 0 10px;
+  background: @background;
+  border-radius: 20;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  color: white;
+}
+
+#workspaces button:hover {
+  border-color: transparent;
+  border: 1px solid red;
+}
+
+#workspaces button.active {
+  background: @background;
+  transition: ease-out 0.5s;
+}
+
+.modules-right {
+  border-radius: 20;
+  background: @background;
+}
+
+#temperature,
+#pulseaudio,
+#bluetooth,
+#cpu,
+#memory,
+#clock,
+#custom-wlogout {
+  padding: 0 10px 0 10px;
+  margin: 5px;
+}
